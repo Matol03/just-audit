@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Just Audit — Certificates and professional qualifications of our audit team.">
+  <title>Certificates — Just Audit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Certificates page overrides ── */
+    .cert-hero {
+      min-height: 50vh;
+      background: linear-gradient(145deg, var(--dark) 0%, var(--forest) 50%, #3A6A26 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; position: relative; overflow: hidden;
+      padding-top: 5rem;
+    }
+    .cert-hero .hero-pattern { position: absolute; inset: 0; }
+    .cert-hero-orbs { position: absolute; inset: 0; pointer-events: none; }
+    .cert-hero-orbs .orb-1 {
+      position: absolute; width: 420px; height: 420px;
+      top: -120px; right: -60px; border-radius: 50% 0 50% 0;
+      background: radial-gradient(circle, rgba(143,190,116,0.10) 0%, transparent 70%);
+      animation: floatOrb 12s ease-in-out infinite;
+    }
+    .cert-hero-content {
+      position: relative; z-index: 2; color: var(--white); padding: 3rem 2rem;
+    }
+    .cert-hero-content h1 { color: var(--white); margin-top: 0.8rem; }
+    .cert-hero-content p {
+      color: rgba(255,255,255,0.62); margin-top: 1rem;
+      font-size: 1.05rem; max-width: 480px; margin-left: auto; margin-right: auto;
+    }
+
+    /* ── Certificates body ── */
+    .cert-body { background: var(--cream); padding: 6rem 0 5rem; }
+
+    .cert-person { margin-bottom: 5.5rem; }
+    .cert-person:last-child { margin-bottom: 0; }
+
+    .cert-person-hd {
+      display: flex; align-items: center; gap: 1.8rem;
+      margin-bottom: 2.5rem; padding-bottom: 1.6rem;
+      border-bottom: 2px solid rgba(61,107,44,0.14);
+    }
+    .cert-avatar {
+      width: 76px; height: 76px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+      border: 3px solid var(--gold);
+      box-shadow: 0 4px 16px rgba(201,169,78,0.25);
+    }
+    .cert-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+    .cert-meta h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+    .cert-meta .team-role {
+      display: block; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-top: 0.2rem;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .cert-card {
+      background: var(--white);
+      border: 1px solid rgba(61,107,44,0.12);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      box-shadow: 0 2px 10px rgba(20,31,12,0.06);
+    }
+    .cert-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(20,31,12,0.12); }
+
+    .cert-card-top {
+      padding: 1.1rem 1.5rem;
+      background: linear-gradient(135deg, var(--forest) 0%, var(--sage) 100%);
+      color: var(--white);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .cert-card-top svg { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; }
+    .cert-card-top span { font-size: 0.88rem; font-weight: 500; }
+
+    .cert-frame { width: 100%; height: 480px; border: none; display: block; }
+
+    .cert-link-fallback {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.5rem; padding: 1rem;
+      background: rgba(61,107,44,0.06); border-top: 1px solid rgba(61,107,44,0.1);
+      font-size: 0.8rem; font-weight: 500;
+      color: var(--sage); transition: color 0.3s;
+      text-decoration: none;
+    }
+    .cert-link-fallback:hover { color: var(--forest); }
+    .cert-link-fallback svg { width: 14px; height: 14px; }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .cert-grid { grid-template-columns: 1fr; }
+      .cert-frame { height: 380px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-mark">J</span>
+      <span class="logo-text">JUST AUDIT</span>
+    </a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#team">Team</a></li>
+      <li><a href="index.html#gallery">Gallery</a></li>
+      <li><a href="index.html#initiative">Initiative</a></li>
+      <li><a href="certificates.html" class="nav-cta">Certificates</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<div class="cert-hero">
+  <div class="hero-pattern"></div>
+  <div class="cert-hero-orbs"><div class="orb-1"></div></div>
+  <div class="cert-hero-content">
+    <span class="section-label reveal" data-d="1">Professional Credentials</span>
+    <h1 class="reveal" data-d="2">Certificates &amp;<br><em>Qualifications</em></h1>
+    <p class="reveal" data-d="3">Our team holds internationally recognized certifications attesting to the highest standards of professional competence in audit and accounting.</p>
+  </div>
+</div>
+
+<!-- ============ CERTIFICATES BODY ============ -->
+<section class="cert-body">
+  <div class="container">
+
+    <!-- ── Bibigul Kenesjanovna ── -->
+    <div class="cert-person reveal">
+      <div class="cert-person-hd">
+        <div class="cert-avatar">
+          <img src="https://drive.google.com/thumbnail?id=1JPnf6wg5T4p1lX6iyPtNJKje5cLCPxDI&sz=w300"
+               alt="Bibigul Kenesjanovna">
+        </div>
+        <div class="cert-meta">
+          <h2>Bibigul Kenesjanovna</h2>
+          <span class="team-role">Founder &amp; Chief Auditor</span>
+        </div>
+      </div>
+
+      <div class="cert-grid">
+
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>КБЗО Certificate</span>
+          </div>
+          <iframe class="cert-frame"
+            src="https://drive.google.com/file/d/1qRqq2NSZ_MG95_ginrEF4LHlO4qmjDOT/preview"
+            allow="autoplay" title="КБЗО Certificate"></iframe>
+          <a class="cert-link-fallback"
+            href="https://drive.google.com/file/d/1qRqq2NSZ_MG95_ginrEF4LHlO4qmjDOT/view"
+            target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            Open in new tab
+          </a>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>General Auditor Certificate</span>
+          </div>
+          <iframe class="cert-frame"
+            src="https://drive.google.com/file/d/1q1l4xKofN_DocmLeNV1n17PZHX5XpnMi/preview"
+            allow="autoplay" title="General Certificate"></iframe>
+          <a class="cert-link-fallback"
+            href="https://drive.google.com/file/d/1q1l4xKofN_DocmLeNV1n17PZHX5XpnMi/view"
+            target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            Open in new tab
+          </a>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>CIPFA Certification</span>
+          </div>
+          <iframe class="cert-frame"
+            src="https://drive.google.com/file/d/1-2E3y0dHsCDm_mwxrWytGFzo04NeOqJO/preview"
+            allow="autoplay" title="CIPFA Certification"></iframe>
+          <a class="cert-link-fallback"
+            href="https://drive.google.com/file/d/1-2E3y0dHsCDm_mwxrWytGFzo04NeOqJO/view"
+            target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            Open in new tab
+          </a>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>ESEP Certification</span>
+          </div>
+          <iframe class="cert-frame"
+            src="https://drive.google.com/file/d/1WzUlkZrvq6Wiiq1-NLw0HugZsF0jWtbI/preview"
+            allow="autoplay" title="ESEP Certification"></iframe>
+          <a class="cert-link-fallback"
+            href="https://drive.google.com/file/d/1WzUlkZrvq6Wiiq1-NLw0HugZsF0jWtbI/view"
+            target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            Open in new tab
+          </a>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>State Auditor's Certificate</span>
+          </div>
+          <iframe class="cert-frame"
+            src="https://drive.google.com/file/d/1YpU5lO5RP7fPHJTfGmw6JTAVDU78J7zy/preview"
+            allow="autoplay" title="State Auditor Certificate"></iframe>
+          <a class="cert-link-fallback"
+            href="https://drive.google.com/file/d/1YpU5lO5RP7fPHJTfGmw6JTAVDU78J7zy/view"
+            target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            Open in new tab
+          </a>
+        </div>
+
+      </div>
+    </div><!-- /cert-person -->
+
+    <!-- ── Aigaraeva Zhanat Beketovna ── -->
+    <div class="cert-person reveal">
+      <div class="cert-person-hd">
+        <div class="cert-avatar">
+          <img src="https://drive.google.com/thumbnail?id=1ZiW45QK2JF58hM9Feepd-Zjlj7hfrFZK&sz=w300"
+               alt="Aigaraeva Zhanat Beketovna">
+        </div>
+        <div class="cert-meta">
+          <h2>Aigaraeva Zhanat Beketovna</h2>
+          <span class="team-role">Chief Auditor</span>
+        </div>
+      </div>
+
+      <div class="cert-grid">
+
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Professional Accountant of the RK</span>
+          </div>
+          <iframe class="cert-frame"
+            src="https://drive.google.com/file/d/1b9HMZPifCmG-6UZ7tnMLaD3PnojWliSg/preview"
+            allow="autoplay" title="Professional Accountant RK"></iframe>
+          <a class="cert-link-fallback"
+            href="https://drive.google.com/file/d/1b9HMZPifCmG-6UZ7tnMLaD3PnojWliSg/view"
+            target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            Open in new tab
+          </a>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Auditor's Certificate</span>
+          </div>
+          <iframe class="cert-frame"
+            src="https://drive.google.com/file/d/1nT0UY9NdU5aWLofMlbhU1Kb26o4yAqbQ/preview"
+            allow="autoplay" title="Auditor Certificate"></iframe>
+          <a class="cert-link-fallback"
+            href="https://drive.google.com/file/d/1nT0UY9NdU5aWLofMlbhU1Kb26o4yAqbQ/view"
+            target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            Open in new tab
+          </a>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>CIPA Certification</span>
+          </div>
+          <iframe class="cert-frame"
+            src="https://drive.google.com/file/d/1U0nB4P-g-6Js-D-mzyEcZIOL5RB4Nq2Q/preview"
+            allow="autoplay" title="CIPA Certification"></iframe>
+          <a class="cert-link-fallback"
+            href="https://drive.google.com/file/d/1U0nB4P-g-6Js-D-mzyEcZIOL5RB4Nq2Q/view"
+            target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            Open in new tab
+          </a>
+        </div>
+
+      </div>
+    </div><!-- /cert-person -->
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">
+        <span class="logo-mark">J</span>
+        <span class="logo-text">JUST AUDIT</span>
+      </a>
+      <p class="footer-tagline">Professional audit &amp; consulting services across Kazakhstan</p>
+      <nav class="footer-nav">
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#team">Team</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="certificates.html">Certificates</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <p class="footer-copy">© 2025 Just Audit · Astana, Kazakhstan · All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Minimal JS for certificates page */
+  const nav       = document.getElementById('nav');
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('is-open');
+    navLinks.classList.toggle('open');
+    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

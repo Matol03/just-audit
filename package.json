@@ -1,0 +1,9 @@
+{
+  "name": "just-audit",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npx serve .",
+    "deploy": "vercel --prod",
+    "deploy:preview": "vercel"
+  }
+}
