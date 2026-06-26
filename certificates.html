@@ -7,7 +7,7 @@
   <title>Certificates — Just Audit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
     /* ── Certificates page overrides ── */
@@ -128,6 +128,32 @@
     </ul>
   </div>
 </nav>
+
+<!-- ============ SIDEBAR (mobile) ============ -->
+<aside class="nav-sidebar" id="navSidebar" aria-hidden="true">
+  <div class="sidebar-hd">
+    <div class="sidebar-logo">
+      <span class="logo-mark">J</span>
+      <span class="logo-text">JUST AUDIT</span>
+    </div>
+    <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <ul class="sidebar-nav">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#team">Team</a></li>
+    <li><a href="index.html#gallery">Gallery</a></li>
+    <li><a href="index.html#initiative">Initiative</a></li>
+    <li><a href="certificates.html">Certificates</a></li>
+  </ul>
+  <a href="index.html#contact" class="sidebar-cta-btn">Contact Us</a>
+  <div class="sidebar-ft">
+    <p>Just Audit · Astana, Kazakhstan<br>+7 700 607 0785</p>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
 <!-- ============ HERO ============ -->
 <div class="cert-hero">
@@ -334,16 +360,31 @@
 </footer>
 
 <script>
-  /* Minimal JS for certificates page */
-  const nav       = document.getElementById('nav');
-  const hamburger = document.getElementById('hamburger');
-  const navLinks  = document.getElementById('navLinks');
+  const hamburger       = document.getElementById('hamburger');
+  const navSidebar      = document.getElementById('navSidebar');
+  const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+  const sidebarClose    = document.getElementById('sidebarClose');
 
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('is-open');
-    navLinks.classList.toggle('open');
-    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-  });
+  function openSidebar() {
+    hamburger.classList.add('is-open');
+    navSidebar.classList.add('open');
+    sidebarBackdrop.classList.add('open');
+    navSidebar.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar() {
+    hamburger.classList.remove('is-open');
+    navSidebar.classList.remove('open');
+    sidebarBackdrop.classList.remove('open');
+    navSidebar.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => navSidebar.classList.contains('open') ? closeSidebar() : openSidebar());
+  sidebarClose.addEventListener('click', closeSidebar);
+  sidebarBackdrop.addEventListener('click', closeSidebar);
+  navSidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSidebar));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
